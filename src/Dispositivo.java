@@ -1,4 +1,4 @@
-public class Dispositivo implements Reservable{
+public class Dispositivo implements Reserva{
 
     int codigo;
     String tipo;

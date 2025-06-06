@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-public class Usuario {
+public abstract class Usuario {
 
     Scanner leer= new Scanner(System.in);
 
     int id;
     String nombre;
     String correo;
-    String tipo;                //Alumno o Estudiante
+    String contraseña;
 
-    public Usuario(int id, String nombre, String correo, String tipo){
+    public Usuario(int id, String nombre, String correo, String contraseña){
         this.id= id;
         this.nombre= nombre;
         this.correo= correo;
-        this.tipo= tipo;
+        this.contraseña= contraseña;
     }
 
     public int getId() {
@@ -34,14 +34,17 @@ public class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+
+    public void registrarse(){
+        System.out.println("Ingrese su nombre completo");
+        this.nombre= nombre;
+        System.out.println("Ingrese su correo");
+        this.correo= correo;
+        System.out.println("Ingrese su contraseña");
+        this.contraseña= contraseña;
     }
 
-    public void iniciarSesion(String contraseña){
+    public void iniciarSesion(){
         int contador= 0;
         String correroPrueba= "";
         String contraseñaPrueba= "";
