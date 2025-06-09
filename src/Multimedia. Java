@@ -1,0 +1,23 @@
+public abstract class Multimedia {
+    protected String titulo;
+    protected String autor;
+    protected int añodPublicacion;
+
+    public Multimedia(String titulo, String autor, int añodPublicacion) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.añoPublicacion = añodPublicacion;
+    }
+
+    public abstract void mostrarInfo();
+
+    // Getters y setters
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+
+    public String getAutor() { return autor; }
+    public void setAutor(String autor) { this.autor = autor; }
+
+    public int getAñodPublicacion() { return añodPublicacion; }
+    public void setAñodPublicacion(int añoPublicacion) { this.añodPublicacion = añodPublicacion; }
+}
