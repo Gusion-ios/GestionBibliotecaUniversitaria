@@ -1,13 +1,29 @@
 public abstract class Multimedia {
+    protected String codigo;
     protected String titulo;
-    protected String autor;
-    protected int añoPublicacion;
+    protected boolean estadoDisponibilidad;
 
-    public Multimedia(String titulo, String autor, int añoPublicacion) {
+    public Multimedia(String codigo, String titulo, boolean estadoDisponibilidad) {
+        this.codigo = codigo;
         this.titulo = titulo;
-        this.autor = autor;
-        this.añoPublicacion = añoPublicacion;
+        this.estadoDisponibilidad = estadoDisponibilidad;
     }
 
-    public abstract void mostrarInfo();
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public boolean isDisponible() {
+        return estadoDisponibilidad;
+    }
+
+    public void setDisponible(boolean estadoDisponibilidad) {
+        this.estadoDisponibilidad = estadoDisponibilidad;
+    }
+
+    public abstract void mostrarInformacion();
 }
