@@ -1,17 +1,13 @@
-public class LibroDigital extends Libro {
-    private String formato;
+public abstract class Multimedia {
+    protected String titulo;
+    protected String autor;
+    protected int añoPublicacion;
 
-    public LibroDigital(String titulo, String autor, int añoPublicacion, int paginas, String formato) {
-        super(titulo, autor, añoPublicacion, paginas);
-        this.formato = formato;
+    public Multimedia(String titulo, String autor, int añoPublicacion) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.añoPublicacion = añoPublicacion;
     }
 
-    @Override
-    public void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("Formato digital: " + formato);
-    }
-
-    public String getFormato() { return formato; }
-    public void setFormato(String formato) { this.formato = formato; }
+    public abstract void mostrarInfo();
 }
