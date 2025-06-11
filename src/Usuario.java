@@ -8,12 +8,14 @@ public abstract class Usuario {
     String nombre;
     String correo;
     String contraseña;
+    boolean sancionado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña){
+    public Usuario(int id, String nombre, String correo, String contraseña, boolean sancionado){
         this.id= id;
         this.nombre= nombre;
         this.correo= correo;
         this.contraseña= contraseña;
+        this.sancionado= false;
     }
 
     public int getId() {
@@ -33,6 +35,18 @@ public abstract class Usuario {
     }
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+    public String getContraseña() {
+        return contraseña;
+    }
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    public boolean isSancionado() {
+        return sancionado;
+    }
+    public void setSancionado(boolean sancionado) {
+        this.sancionado = sancionado;
     }
 
     public void registrarse(){
