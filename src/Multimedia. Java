@@ -2,45 +2,57 @@ public abstract class Multimedia {
     protected int codigo;
     protected String titulo;
     protected String autor;
-    protected boolean estadoDisponibilidad;
+    protected boolean disponible;
 
-    public Multimedia(int codigo, String titulo, String autor, boolean estadoDisponibilidad) {
+    public Multimedia(int codigo, String titulo, String autor, boolean disponible) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.autor = autor;
-        this.estadoDisponibilidad = estadoDisponibilidad;
+        this.disponible = disponible;
     }
 
     public int getCodigo() {
-        return codigo ;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public boolean isEstadoDisponibilidad() {
-        return estadoDisponibilidad;
+        return codigo;
     }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
     }
 
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public void setEstadoDisponibilidad(boolean estadoDisponibilidad) {
-        this.estadoDisponibilidad = estadoDisponibilidad;
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public boolean estaDisponible() {
+        return disponible;
+    }
+
+    public void prestar() {
+        disponible = false;
+    }
+
+    public void devolver() {
+        disponible = true;
     }
 
     public abstract void mostrarInfo();
