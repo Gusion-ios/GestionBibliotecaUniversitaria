@@ -2,8 +2,8 @@ public class Administrador extends Usuario implements Reserva{
 
     String cargo;
 
-    public Administrador(int id, String nombre, String correo, String contraseña, String  cargo){
-        super(id, nombre, correo, contraseña);
+    public Administrador(int id, String nombre, String correo, String contraseña, boolean sancionado, String  cargo){
+        super(id, nombre, correo, contraseña, sancionado);
         this.cargo= cargo;
     }
     public String getCargo() {

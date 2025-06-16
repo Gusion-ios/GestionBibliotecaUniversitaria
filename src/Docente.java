@@ -2,8 +2,8 @@ public class Docente extends Usuario{
 
     String especialidad;
 
-    public Docente(int id, String nombre, String correo, String contraseña,String especialidad){
-        super(id, nombre, correo, contraseña);
+    public Docente(int id, String nombre, String correo, String contraseña, boolean sancionado,String especialidad){
+        super(id, nombre, correo, contraseña, sancionado);
         this.especialidad= especialidad;
     }
     public String getEspecialidad() {
