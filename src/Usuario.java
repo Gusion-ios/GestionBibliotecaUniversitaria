@@ -4,11 +4,11 @@ public abstract class Usuario {
 
     Scanner leer= new Scanner(System.in);
 
-    int id;
-    String nombre;
-    String correo;
-    String contraseña;
-    boolean sancionado;
+    private int id;
+    private String nombre;
+    private String correo;
+    private String contraseña;
+    private boolean sancionado;
 
     public Usuario(int id, String nombre, String correo, String contraseña, boolean sancionado){
         this.id= id;
