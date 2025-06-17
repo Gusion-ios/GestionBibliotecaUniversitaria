@@ -7,7 +7,7 @@ public class Administrador extends Usuario implements Reservable{
     private String cargo;
 
     public Administrador(int id, String nombre, String correo, String contraseña, boolean sancionado, String  cargo){
-        super(id, nombre, correo, contraseña, sancionado);
+        super(id, nombre, correo, contraseña, sancionado= false);
         this.cargo= cargo;
     }
     public String getCargo() {
