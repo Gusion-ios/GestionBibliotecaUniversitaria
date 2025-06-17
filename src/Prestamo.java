@@ -4,8 +4,8 @@ public class Prestamo extends Libro {
 
     Scanner leer= new Scanner(System.in);
 
-    int fechaInicio;
-    int fechaFin;
+    private int fechaInicio;
+    private int fechaFin;
 
     public Prestamo(String categoria, String descripcion, int codigo, String titulo, String autor, boolean disponible, int fechaInicio, int fechaFin) {
         super(categoria, descripcion, codigo, titulo, autor, disponible);

@@ -1,4 +1,8 @@
-public class Administrador extends Usuario implements Reserva{
+import java.util.Scanner;
+
+public class Administrador extends Usuario implements Reservable{
+
+    Scanner leer= new Scanner(System.in);
 
     private String cargo;
 
@@ -49,6 +53,16 @@ public class Administrador extends Usuario implements Reserva{
     }
 
     public void registrarUsuario(Usuario usuario){
+
+    }
+
+    public void asignarTiempo(){
+
+    }
+    public void aprobarReserva(){
+
+    }
+    public void rechazarReserva(){
 
     }
 
