@@ -22,20 +22,4 @@ public class Alumno extends Usuario{
         this.semestre = semestre;
     }
 
-    public void consultarHorario() {
-        System.out.println("""
-            Su horario es el siguiente:
-            ┌────────────┬────────────┬────────────┬────────────┬────────────┐
-            │   Hora     │  Lunes     │  Martes    │  Miércoles │  Jueves    │
-            ├────────────┼────────────┼────────────┼────────────┼────────────┤
-            │ 08:00-09:30│ Matemática │            │ Matemática │            │
-            │ 09:30-11:00│ Programación│ Algoritmos│ Programación│ Algoritmos│
-            │ 11:00-12:30│            │ Inglés     │            │ Inglés     │
-            │ 13:00-14:30│ Física     │            │ Física     │            │
-            │ 14:30-16:00│            │ Base de datos│         │ Base de datos│
-            └────────────┴────────────┴────────────┴────────────┴────────────┘
-            """);
-    }
-
-
 }

@@ -1,6 +1,10 @@
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
-public class Administrador extends Usuario implements Reservable{
+public class Administrador extends Usuario {//implements Reservable
+
+    private Set<Usuario> usuariosRegistrados= new HashSet<>();
 
     Scanner leer= new Scanner(System.in);
 

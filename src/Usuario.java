@@ -4,18 +4,18 @@ public abstract class Usuario {
 
     Scanner leer= new Scanner(System.in);
 
-    private int id;
-    private String nombre;
-    private String correo;
-    private String contraseña;
-    private boolean sancionado;
+    protected int id;
+    protected String nombre;
+    protected String correo;
+    protected String contraseña;
+    protected boolean sancionado;
 
     public Usuario(int id, String nombre, String correo, String contraseña, boolean sancionado){
         this.id= id;
         this.nombre= nombre;
         this.correo= correo;
         this.contraseña= contraseña;
-        this.sancionado= false;
+        this.sancionado= sancionado;
     }
 
     public int getId() {
@@ -51,28 +51,28 @@ public abstract class Usuario {
 
     public void registrarse(){
         System.out.println("Ingrese su nombre completo");
-        this.nombre= nombre;
+        nombre= leer.nextLine();
         System.out.println("Ingrese su correo");
-        this.correo= correo;
+        correo= leer.nextLine();
         System.out.println("Ingrese su contraseña");
-        this.contraseña= contraseña;
+        contraseña= leer.nextLine();
     }
 
     public void iniciarSesion(){
-        int contador= 0;
-        String correroPrueba= "";
+        boolean autenticado = false;
+        String correoPrueba = "";
         String contraseñaPrueba= "";
         do{
             System.out.println("Ingrese su correo");
-            correroPrueba= leer.nextLine();
+            correoPrueba = leer.nextLine();
             System.out.println("Ingrese su contraseña");
             contraseñaPrueba= leer.nextLine();
-            if(contraseñaPrueba.equals(contraseña) && correroPrueba.equals(correo)){
-                contador++;
+            if(contraseñaPrueba.equals(contraseña) && correoPrueba.equals(correo)){
+                autenticado = true;
             }else {
                 System.out.println("Credenciales incorrectas");
             }
-        }while(contador== 1);
+        }while(!autenticado);
     }
 
     public void cerrarSesion(){
