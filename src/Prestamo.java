@@ -1,18 +1,34 @@
 import java.util.Scanner;
 
-public class Prestamo extends Libro {
+public class Prestamo {
 
     Scanner leer= new Scanner(System.in);
 
+    private Usuario usuario;
+    private Multimedia multimedia;
     private int fechaInicio;
     private int fechaFin;
 
-    public Prestamo(String categoria, String descripcion, int codigo, String titulo, String autor, boolean disponible, int fechaInicio, int fechaFin) {
-        super(categoria, descripcion, codigo, titulo, autor, disponible);
+    public Prestamo(Usuario usuario, Multimedia multimedia, int fechaInicio, int fechaFin) {
+        this.usuario= usuario;
+        this.multimedia= multimedia;
         this.fechaInicio= fechaInicio;
         this.fechaFin= fechaFin;
+        multimedia.setDisponible(false);
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public Multimedia getMultimedia() {
+        return multimedia;
+    }
+    public void setMultimedia(Multimedia multimedia) {
+        this.multimedia = multimedia;
+    }
     public int getFechaInicio() {
         return fechaInicio;
     }
@@ -26,25 +42,31 @@ public class Prestamo extends Libro {
         this.fechaFin = fechaFin;
     }
 
-    public void registrarLibro(){
-        String respuesta;
-        System.out.println("Libro usado: "+ titulo);
-        System.out.println("Codigo: "+ codigo);
-        System.out.println("¿Desea cambiar de Libro?");
-        respuesta= leer.nextLine();
-        if(respuesta.equalsIgnoreCase("Si")){
-            System.out.println("Ingrese el titulo del Libro");
-            titulo= leer.nextLine();
-            System.out.println("Ingrese el codigo del dispositivo");
-            codigo= leer.nextInt();
-        }else {
+    public void registrarPrestamo(){
+        if (usuario.isSancionado()) {
+            System.out.println("El usuario está sancionado y no puede realizar préstamos.");
             return;
         }
-        disponible= false;
+        if (!multimedia.isDisponible()) {
+            System.out.println("El recurso ya está prestado.");
+            return;
+        }
+        System.out.println("Realizando el prestamo de la multimedia "+ multimedia.getTitulo());
+        System.out.println("Tipo: "); //aqui va las hijas de multimedia
+        //aqui va el resto de la informacion
+        multimedia.setDisponible(false);
     }
 
     public void devolver(){
-        disponible= true;
+        multimedia.setDisponible(true);
+        System.out.println("Multimedia devuelta: "+ multimedia.getTitulo());
+    }
+
+    public void mostrarInfo(){
+        System.out.println("Se presto a "+ usuario.getNombre());
+        System.out.println("El recurso "+ multimedia.getTitulo());
+        System.out.println("Fecha de inicio: "+ fechaInicio);
+        System.out.println("Fecha de fin: "+ fechaFin);
     }
 
 }
