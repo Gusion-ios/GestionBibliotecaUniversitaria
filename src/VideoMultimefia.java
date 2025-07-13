@@ -1,38 +1,73 @@
-public class Video extends Multimedia {
-    private double duracion;
+public class Video extends Multimedia{
+
+    private int duracion;
+
     private String resolucion;
 
-    public Video(int codigo, String titulo, String autor, boolean disponible,
-                 double duracion, String resolucion) {
-        super(codigo, titulo, autor, disponible);
+    public Video(int codigo, String titulo, String autor, boolean disponible, int duracion, String resolucion, CategoriaMultimedia categoriaMultimedia) {
+
+        super(codigo, titulo, autor, disponible, categoriaMultimedia);
+
         this.duracion = duracion;
+
         this.resolucion = resolucion;
+
+        this.categoriaMultimedia = categoriaMultimedia;
+
     }
 
-    public double getDuracion() {
+
+    public int getDuracion() {
+
         return duracion;
+
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(int duracion) {
+
         this.duracion = duracion;
+
     }
 
     public String getResolucion() {
+
         return resolucion;
+
     }
 
     public void setResolucion(String resolucion) {
+
         this.resolucion = resolucion;
+
     }
 
-    @Override
-    public void mostrarInfo() {
-        System.out.println("Video:");
-        System.out.println("Código: " + codigo);
-        System.out.println("Título: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("Duración: " + duracion + " min");
-        System.out.println("Resolución: " + resolucion);
-        System.out.println("Disponible: " + disponible);
+    public CategoriaMultimedia getCategoriaMultimedia() {
+
+        return categoriaMultimedia;
+
     }
+
+    public void setCategoriaMultimedia(CategoriaMultimedia categoriaMultimedia) {
+
+        this.categoriaMultimedia = categoriaMultimedia;
+
+    }
+
+
+    @Override
+
+    public void mostrarInfo() {
+
+        System.out.println("Codigo: "+ codigo);
+        System.out.println("Titulo: "+ titulo);
+        System.out.println("Autor: "+ autor);
+        System.out.println("Duracion: "+ duracion);
+        System.out.println("Resolucion: "+ resolucion);
+        System.out.println("Disponible: "+ disponible);
+        System.out.println("Categoría: " + categoriaMultimedia.getCategoria());
+        System.out.println("Descripción: " + categoriaMultimedia.getDescripcion());
+
+    }
+
 }
+
