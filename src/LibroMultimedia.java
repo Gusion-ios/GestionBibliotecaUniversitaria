@@ -1,38 +1,66 @@
-public class LibroMultimedia extends Multimedia {
-    private String editorial;
-    private int paginas;
+public class Libro extends Multimedia {
 
-    public LibroMultimedia(int codigo, String titulo, String autor, boolean disponible,
-                           String editorial, int paginas) {
-        super(codigo, titulo, autor, disponible);
+    private String editorial;
+
+    public Libro(int codigo, String titulo, String autor, boolean disponible, String editorial, CategoriaMultimedia categoriaMultimedia) {
+
+        super(codigo, titulo, autor, disponible, categoriaMultimedia);
+
         this.editorial = editorial;
-        this.paginas = paginas;
+
+        this.categoriaMultimedia = categoriaMultimedia;
+
     }
 
+
+
     public String getEditorial() {
+
         return editorial;
+
     }
 
     public void setEditorial(String editorial) {
+
         this.editorial = editorial;
+
     }
 
-    public int getPaginas() {
-        return paginas;
+    public CategoriaMultimedia getCategoriaMultimedia() {
+
+        return categoriaMultimedia;
+
     }
 
-    public void setPaginas(int paginas) {
-        this.paginas = paginas;
+    public void setCategoriaMultimedia(CategoriaMultimedia categoriaMultimedia) {
+
+        this.categoriaMultimedia = categoriaMultimedia;
+
     }
+
+
 
     @Override
+
     public void mostrarInfo() {
-        System.out.println("Libro Multimedia:");
+
         System.out.println("Código: " + codigo);
+
         System.out.println("Título: " + titulo);
+
         System.out.println("Autor: " + autor);
+
         System.out.println("Editorial: " + editorial);
-        System.out.println("Páginas: " + paginas);
+
         System.out.println("Disponible: " + disponible);
+
+        System.out.println("Categoría: " + categoriaMultimedia.getCategoria());
+
+        System.out.println("Descripción: " + categoriaMultimedia.getDescripcion());
+
     }
+
+
+
 }
+
