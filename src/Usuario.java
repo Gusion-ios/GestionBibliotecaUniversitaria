@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
-public abstract class Usuario {
+public abstract class Usuario <x extends Number>{
 
     protected Scanner leer = new Scanner(System.in);
 
-    protected int id;
+    protected x id;
     protected String nombre;
     protected String correo;
     protected String contraseña;
     protected boolean sancionado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña, boolean sancionado){
+    public Usuario(x id, String nombre, String correo, String contraseña, boolean sancionado){
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -18,10 +18,10 @@ public abstract class Usuario {
         this.sancionado = sancionado;
     }
 
-    public int getId() {
+    public x getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(x id) {
         this.id = id;
     }
     public String getNombre() {
@@ -69,6 +69,7 @@ public abstract class Usuario {
 
     public void cerrarSesion(){
         System.out.println("Sesión cerrada.");
+        return;
     }
 
     @Override
