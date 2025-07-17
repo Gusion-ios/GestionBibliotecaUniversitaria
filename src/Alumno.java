@@ -42,6 +42,7 @@ public class Alumno extends Usuario{
             System.out.println("5. Ver dispositivos disponibles");
             System.out.println("6. Reservar dispositivo");
             System.out.println("7. Volver al menú principal");
+            System.out.println("8. Salir del comando");
             System.out.print("Seleccione una opción: ");
             while (!leer.hasNextInt()) {
                 System.out.print("Ingrese un número válido: ");
@@ -71,6 +72,8 @@ public class Alumno extends Usuario{
                 case 7:
                     System.out.println("Volviendo al menú principal...");
                     break;
+                case 8:
+                    return;
                 default:
                     System.out.println("Opción inválida. Intente de nuevo.");
             }

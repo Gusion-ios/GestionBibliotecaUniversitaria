@@ -11,8 +11,10 @@ public class Administrador extends Usuario<Integer>{
     private String cargo;
     private Multimedia multimedia;
     private Prestamo prestamo;
+    private Dispositivo dispositivo;
+    private SalaEstudio salaEstudio;
 
-    private Set<Usuario> usuariosRegistrados;
+    protected Set<Usuario> usuariosRegistrados;
     private List<Sancion> historialSanciones = new ArrayList<>();
     private List<Prestamo> prestamosRegistrados = new ArrayList<>();
 
@@ -117,6 +119,7 @@ public class Administrador extends Usuario<Integer>{
             System.out.println("5. Prestar material");
             System.out.println("6. Devolver material");
             System.out.println("7. Volver al menú principal");
+            System.out.println("8. Salir del comando");
             System.out.print("Seleccione una opción: ");
             while (!leer.hasNextInt()) {
                 System.out.print("Ingrese un número válido: ");
@@ -147,6 +150,8 @@ public class Administrador extends Usuario<Integer>{
                 case 7:
                     System.out.println("Volviendo al menú principal...");
                     break;
+                case 8:
+                    return;
                 default:
                     System.out.println("Opción inválida. Intente de nuevo.");
             }
@@ -302,9 +307,14 @@ public class Administrador extends Usuario<Integer>{
             System.out.println("1. Sancionar usuario");
             System.out.println("2. Liberar sanción");
             System.out.println("3. Ver historial de sanciones");
-            System.out.println("4. Aprobar reserva");
-            System.out.println("5. Liberar reserva");
-            System.out.println("6. Volver al menú principal");
+            System.out.println("4. Aprobar reserva dispositivo");
+            System.out.println("5. Aprobar reserva sala de estudio");
+            System.out.println("6. Liberar reserva dispositivo");
+            System.out.println("7. Liberar reserva sala de estudio");
+            System.out.println("8. Registrar Usuario");
+            System.out.println("9. Mostrar informacion de un usuario");
+            System.out.println("10. Volver al menú principal");
+            System.out.println("11. Salir del comando");
             System.out.print("Seleccione una opción: ");
             while (!leer.hasNextInt()) {
                 System.out.print("Ingrese un número válido: ");
@@ -323,9 +333,28 @@ public class Administrador extends Usuario<Integer>{
                     verHistorialSanciones();
                     break;
                 case 4:
-                    System.out.println("Volviendo al menú principal...");
+                    dispositivo.aprobarReserva();
                     break;
-
+                case 5:
+                    salaEstudio.aprobarReserva();
+                    break;
+                case 6:
+                    dispositivo.liberarReserva();
+                    break;
+                case 7:
+                    salaEstudio.liberarReserva();
+                    break;
+                case 8:
+                    registrarUsuario();
+                    break;
+                case 9:
+                    InfoUsuario();
+                    break;
+                case 10:
+                    System.out.println("Volviendo el menu principal");;
+                    break;
+                case 11:
+                    return;
                 default:
                     System.out.println("Opción inválida. Intente de nuevo.");
             }
@@ -357,7 +386,7 @@ public class Administrador extends Usuario<Integer>{
         }
     }
 
-   private void liberarSancion(){
+    private void liberarSancion(){
         System.out.println("Ingrese el correo del usuario sancionado: ");
         String correo= leer.nextLine();
         Usuario usuarioEncontrado= null;
@@ -405,6 +434,7 @@ public class Administrador extends Usuario<Integer>{
             System.out.println("4. Buscar y aprobar/liberar reserva de una sala");
             System.out.println("5. Actualizar stock de un dispositivo");
             System.out.println("6. Volver al menú principal");
+            System.out.println("7. Salir del comando");
             System.out.print("Seleccione una opción: ");
 
             while (!leer.hasNextInt()) {
@@ -435,6 +465,8 @@ public class Administrador extends Usuario<Integer>{
                 case 6:
                     System.out.println("Volviendo al menú principal...");
                     break;
+                case 7:
+                    return;
                 default:
                     System.out.println("Opción inválida. Intente nuevamente.");
             }

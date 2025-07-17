@@ -77,9 +77,11 @@ public class Dispositivo extends Stock implements Reservable{
                 this.disponible = false;
                 System.out.println("Reserva aprobada por " + cantidadHoras + " horas.");
                 respondido = true;
+                return;
             } else if (respuesta.equalsIgnoreCase("No")) {
                 System.out.println("Se desaprobó la reserva del dispositivo " + tipo + ".");
                 respondido = true;
+                return;
             } else {
                 System.out.println("Respuesta inválida. Intente nuevamente.");
             }
