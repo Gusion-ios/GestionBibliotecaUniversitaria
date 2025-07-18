@@ -1,6 +1,4 @@
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Biblioteca {
 
@@ -8,7 +6,8 @@ public class Biblioteca {
     private DocenteDAO docenteDAO;
     private DispositivoDAO dispositivoDAO;
     private static MultimediaDAO multimediaDAO;
-    private static Set<Usuario> usuariosRegistrados;
+
+    private static Administrador valerio = new Administrador(1, "Franco Valerio", "admin1@gmail.com", "admin123", false, "Administrador Supremo");
 
     public static void subirActualizaciones() {
         AlumnoDAO alumnoDAO = new AlumnoDAO();
@@ -17,7 +16,7 @@ public class Biblioteca {
         SalaEstudioDAO salaDAO = new SalaEstudioDAO();
 
         // Guardar usuarios
-        for (Usuario u : usuariosRegistrados) {
+        for (Usuario u : valerio.getUsuariosRegistrados()) {
             if (u instanceof Alumno) {
                 alumnoDAO.insertarAlumno((Alumno) u);
             } else if (u instanceof Docente) {
@@ -37,7 +36,7 @@ public class Biblioteca {
 
         // Guardar multimedia
         for (Multimedia m : Multimedia.listaRecursos) {
-            multimediaDAO.guardarTodosLosRecursos((List<Multimedia>) m);
+            multimediaDAO.guardarTodosLosRecursos(Multimedia.listaRecursos);
         }
 
         System.out.println("Datos actualizados en la base de datos.");
@@ -51,7 +50,6 @@ public class Biblioteca {
         System.out.println("Ingrese su contraseña si es Admin o si ingresa como usuario (docente/alumno)");
         String respuesta= leer.nextLine();
         if(respuesta.equalsIgnoreCase("admin123")){
-            Administrador valerio = new Administrador(1, "Franco Valerio", "admin1@gmail.com", "admin123", false, "Administrador Supremo");
             valerio.gestionarUsuario();
             valerio.gestionarDispositivosSalaEstudio();
             valerio.gestionarMultimedia();

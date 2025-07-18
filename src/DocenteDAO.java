@@ -4,28 +4,35 @@ import java.util.List;
 
 public class DocenteDAO {
 
-    Docente docente;
     private Connection conexion;
 
     public DocenteDAO() {
-        this.conexion = conexion;
+        this.conexion = ConexionDB.obtenerConexion();
     }
 
     public void insertarDocente(Docente docente) {
         try {
-            String sqlUsuario = "INSERT INTO Usuario (id, nombre, correo, contraseña, sancionado) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement psUsuario = conexion.prepareStatement(sqlUsuario);
-            psUsuario.setInt(1, (Integer) docente.getId());
-            psUsuario.setString(2, docente.getNombre());
-            psUsuario.setString(3, docente.getCorreo());
-            psUsuario.setString(4, docente.getContraseña());
-            psUsuario.setBoolean(5, docente.isSancionado());
+            // Insertar en tabla Usuario (sin ID manual)
+            String sqlUsuario = "INSERT INTO Usuario (nombre, correo, contraseña, sancionado) VALUES (?, ?, ?, ?)";
+            PreparedStatement psUsuario = conexion.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
+            psUsuario.setString(1, docente.getNombre());
+            psUsuario.setString(2, docente.getCorreo());
+            psUsuario.setString(3, docente.getContraseña());
+            psUsuario.setBoolean(4, docente.isSancionado());
             psUsuario.executeUpdate();
 
-            // Insertar en tabla Docente
+            // Obtener ID generado
+            ResultSet rs = psUsuario.getGeneratedKeys();
+            int idGenerado = -1;
+            if (rs.next()) {
+                idGenerado = rs.getInt(1);
+                docente.setId(idGenerado); // asigna el ID al objeto
+            }
+
+            // Insertar en tabla Docente usando el ID generado
             String sqlDocente = "INSERT INTO Docente (id, especialidad) VALUES (?, ?)";
             PreparedStatement psDocente = conexion.prepareStatement(sqlDocente);
-            psDocente.setInt(1, (Integer) docente.getId());
+            psDocente.setInt(1, idGenerado);
             psDocente.setString(2, docente.getEspecialidad());
             psDocente.executeUpdate();
 

@@ -31,6 +31,9 @@ public class Administrador extends Usuario<Integer>{
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+    public Set<Usuario> getUsuariosRegistrados() {
+        return usuariosRegistrados;
+    }
 
     public void registrarUsuario(){
         System.out.println("Registrando nuevo usuario");

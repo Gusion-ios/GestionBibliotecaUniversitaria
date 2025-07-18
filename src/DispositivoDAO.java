@@ -11,21 +11,24 @@ public class DispositivoDAO {
         try {
             conn = ConexionDB.obtenerConexion();
 
-            // Suponemos que si existe el ID, es una actualización
-            String sql = "MERGE INTO dispositivos AS target " +
+            String sql = "MERGE INTO Dispositivos AS target " +
                     "USING (SELECT ? AS id) AS source " +
                     "ON target.id = source.id " +
                     "WHEN MATCHED THEN " +
-                    "  UPDATE SET nombre = ?, disponible = ?, tipo = ? " +
+                    "  UPDATE SET tipo = ?, disponible = ? " +
                     "WHEN NOT MATCHED THEN " +
-                    "  INSERT (id, nombre, disponible, tipo) VALUES (?, ?, ?, ?);";
+                    "  INSERT (id, tipo, disponible) VALUES (?, ?, ?);";
 
             ps = conn.prepareStatement(sql);
+
+            // SELECT ? AS id
             ps.setInt(1, dispositivo.getCodigo());
+
+            // UPDATE SET tipo = ?, disponible = ?
             ps.setString(2, dispositivo.getTipo());
             ps.setBoolean(3, dispositivo.isDisponible());
 
-
+            // INSERT (id, tipo, disponible)
             ps.setInt(4, dispositivo.getCodigo());
             ps.setString(5, dispositivo.getTipo());
             ps.setBoolean(6, dispositivo.isDisponible());

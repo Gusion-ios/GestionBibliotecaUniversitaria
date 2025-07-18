@@ -8,11 +8,14 @@ import java.util.List;
 public class AudioDAO {
 
     public static void guardarAudio(Audio audio) {
-        Connection conn = ConexionDB.obtenerConexion();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
         String sql = "INSERT INTO Audios (codigo, titulo, autor, disponible, duracion, formato, categoria, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            conn = ConexionDB.obtenerConexion();
+            stmt = conn.prepareStatement(sql);
             stmt.setInt(1, audio.getCodigo());
             stmt.setString(2, audio.getTitulo());
             stmt.setString(3, audio.getAutor());
@@ -27,6 +30,8 @@ public class AudioDAO {
         } catch (SQLException e) {
             System.out.println("Error al guardar el audio:");
             e.printStackTrace();
+        } finally {
+            ConexionDB.cerrarRecursos(conn, stmt, null);
         }
     }
 

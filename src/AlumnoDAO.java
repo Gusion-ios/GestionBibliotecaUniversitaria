@@ -7,30 +7,38 @@ public class AlumnoDAO {
     private Connection conexion;
 
     public AlumnoDAO() {
-        this.conexion = conexion;
+        this.conexion = ConexionDB.obtenerConexion();
     }
 
     public void insertarAlumno(Alumno alumno) {
         try {
-            // Insertar en tabla Usuario
-            String sqlUsuario = "INSERT INTO Usuario (id, nombre, correo, contraseña, sancionado) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement psUsuario = conexion.prepareStatement(sqlUsuario);
-            psUsuario.setInt(1, (Integer) alumno.getId());
-            psUsuario.setString(2, alumno.getNombre());
-            psUsuario.setString(3, alumno.getCorreo());
-            psUsuario.setString(4, alumno.getContraseña());
-            psUsuario.setBoolean(5, alumno.isSancionado());
+            // 1. Insertar en tabla Usuario (sin el campo id)
+            String sqlUsuario = "INSERT INTO Usuario (nombre, correo, contraseña, sancionado) VALUES (?, ?, ?, ?)";
+            PreparedStatement psUsuario = conexion.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
+            psUsuario.setString(1, alumno.getNombre());
+            psUsuario.setString(2, alumno.getCorreo());
+            psUsuario.setString(3, alumno.getContraseña());
+            psUsuario.setBoolean(4, alumno.isSancionado());
             psUsuario.executeUpdate();
 
-            // Insertar en tabla Alumno
-            String sqlAlumno = "INSERT INTO Alumno (id, carrera, semestre) VALUES (?, ?, ?)";
-            PreparedStatement psAlumno = conexion.prepareStatement(sqlAlumno);
-            psAlumno.setInt(1, (Integer) alumno.getId());
-            psAlumno.setString(2, alumno.getCarrera());
-            psAlumno.setInt(3, alumno.getSemestre());
-            psAlumno.executeUpdate();
+            // 2. Obtener el ID generado automáticamente
+            ResultSet rs = psUsuario.getGeneratedKeys();
+            if (rs.next()) {
+                int idGenerado = rs.getInt(1);
+                alumno.setId(idGenerado);
 
-            System.out.println("Alumno insertado correctamente.");
+                // 3. Insertar en tabla Alumno usando ese ID
+                String sqlAlumno = "INSERT INTO Alumno (id, carrera, semestre) VALUES (?, ?, ?)";
+                PreparedStatement psAlumno = conexion.prepareStatement(sqlAlumno);
+                psAlumno.setInt(1, (Integer) alumno.getId());
+                psAlumno.setString(2, alumno.getCarrera());
+                psAlumno.setInt(3, alumno.getSemestre());
+                psAlumno.executeUpdate();
+
+                System.out.println("Alumno insertado correctamente.");
+            } else {
+                System.out.println("No se pudo obtener el ID generado para el alumno.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
